@@ -38,7 +38,7 @@ if ( strncmp( configuration.command, "dimension", 9 ) == 0 ) {
 }
 
   /*
-   *TO COMPLETE
+   * TO COMPLETE
    */
   
   return 0;
