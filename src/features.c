@@ -22,7 +22,6 @@ void dimension(char *source_path){
     unsigned char *data = NULL;
     
     read_image_data(source_path, &data, &width, &height, &channel_count);
-        printf("dimension: %d,%d",width,height);
- 
-
+    printf("dimension: %d,%d",width,height);
+    
 }
