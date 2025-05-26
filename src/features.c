@@ -27,6 +27,9 @@ void dimension(char *source_path){
 }
 
 void first_pixel (char *source_path){
-    int R,G,B;
-    printf("first_pixel: %d, %d, %d",R,G,B);
+    /*int R,G,B;*/ 
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+   printf("first_pixel: %d , %d , %d ",data[0],data[1],data[2]); 
 }
