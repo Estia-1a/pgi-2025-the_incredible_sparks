@@ -7,3 +7,6 @@
  * 
  */
 
+/*int getPixel(_pixelRGB*){
+
+}*/

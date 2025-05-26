@@ -25,3 +25,8 @@ void dimension(char *source_path){
     printf("dimension: %d,%d",width,height);
     
 }
+
+void first_pixel (char *source_path){
+    int R,G,B;
+    printf("first_pixel: %d, %d, %d",R,G,B);
+}
