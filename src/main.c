@@ -47,7 +47,7 @@ if ( strncmp( configuration.command, "second_line", 11 ) == 0 ) {
 }
 if ( strncmp( configuration.command, "print_pixel", 11 ) == 0 ) {
     /* print_pixel() function is defined in feature.h and implemented in feature.c */
-    print_pixel(configuration.filenames[0], configuration.arguments);
+    print_pixel(configuration.filenames[0], atoi(configuration.arguments[0]),); //convertir les caractères char que le tableau config prends en entrée (Cf configp.h) en entiers grace a ATOI et ATOF 
 }
 
 if ( strncmp( configuration.command, "tenth_pixel", 11 ) == 0 ) {
