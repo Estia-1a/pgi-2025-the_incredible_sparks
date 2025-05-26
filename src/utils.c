@@ -7,6 +7,14 @@
  * 
  */
 
-/*int getPixel(_pixelRGB*){
 
-}*/
+pixelRGB * getPixel(unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y){
+    if (x>width || y>height){
+        return NULL ;
+    }
+    if (data==NULL){
+        return NULL ;
+    }
+
+    return (pixelRGB *) &data[3*x+y*width] ;
+}
