@@ -31,8 +31,7 @@ void first_pixel (char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
     read_image_data(source_path, &data, &width, &height, &channel_count);
-    printf("%d",width);
-   printf("first_pixel: %d , %d , %d ",data[0],data[1],data[2]); 
+    printf("first_pixel: %d , %d , %d ",data[0],data[1],data[2]); 
 }
 
 void second_line (char *source_path){
@@ -45,7 +44,18 @@ void second_line (char *source_path){
 void print_pixel( char *filename, int x, int y ){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
+    pixelRGB *pixel ;
     read_image_data(filename, &data, &width, &height, &channel_count);
-    get_pixel(data, width,height, channel_count, x, y);
-    printf("print_pixel(%d, %d): %d, %d, %d",x,y,pixelRGB.R,pixelRGB.G,pixelRGB.B);
+    pixel = get_pixel(data, width,height, channel_count, x, y);
+    printf("print_pixel(%d, %d): %d, %d, %d",x,y,pixel->R,pixel->G,pixel->B);
 }
+
+
+void tenth_pixel (char *source_path){
+    /*int R,G,B;*/ 
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    printf("tenth_pixel: %d , %d , %d ",data[27],data[28],data[29]); 
+}
+
