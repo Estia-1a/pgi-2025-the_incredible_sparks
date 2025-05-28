@@ -1,0 +1,22 @@
+/home/runner/work/pgi-2025-the_incredible_sparks/pgi-2025-the_incredible_sparks/src/utils.c: In function ‘getPixel’:
+/home/runner/work/pgi-2025-the_incredible_sparks/pgi-2025-the_incredible_sparks/src/utils.c:13:16: error: ‘NULL’ undeclared (first use in this function)
+   13 |         return NULL ;
+      |                ^~~~
+/home/runner/work/pgi-2025-the_incredible_sparks/pgi-2025-the_incredible_sparks/src/utils.c:4:1: note: ‘NULL’ is defined in header ‘<stddef.h>’; did you forget to ‘#include <stddef.h>’?
+    3 | #include "utils.h"
+  +++ |+#include <stddef.h>
+    4 | 
+/home/runner/work/pgi-2025-the_incredible_sparks/pgi-2025-the_incredible_sparks/src/utils.c:13:16: note: each undeclared identifier is reported only once for each function it appears in
+   13 |         return NULL ;
+      |                ^~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:121: CMakeFiles/freud.dir/src/utils.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+/home/runner/work/pgi-2025-the_incredible_sparks/pgi-2025-the_incredible_sparks/src/main.c: In function ‘main’:
+/home/runner/work/pgi-2025-the_incredible_sparks/pgi-2025-the_incredible_sparks/src/main.c:50:78: error: expected expression before ‘)’ token
+   50 |     print_pixel(configuration.filenames[0], atoi(configuration.arguments[0]),); //convertir les caractères char que le tableau config prends en entrée (Cf configp.h) en entiers grace a ATOI et ATOF
+      |                                                                              ^
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:107: CMakeFiles/freud.dir/src/main.c.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
