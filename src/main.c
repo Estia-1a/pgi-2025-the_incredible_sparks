@@ -68,6 +68,25 @@ if ( strncmp( configuration.command, "max_component", 13 ) == 0 ) {
     max_component(configuration.filenames[0], configuration.arguments[0]); 
 }
 
+if ( strncmp( configuration.command, "min_component", 13 ) == 0 ) {
+    /* min_component() function is defined in feature.h and implemented in feature.c */
+    min_component(configuration.filenames[0], configuration.arguments[0]); 
+}
+
+if ( strncmp( configuration.command, "stat_report", 11 ) == 0 ) {
+    /* stat_report() function is defined in feature.h and implemented in feature.c */
+    stat_report(configuration.filenames[0]); //convertir les caractères char que le tableau config prends en entrée (Cf configp.h) en entiers grace a ATOI et ATOF
+}
+
+if ( strncmp( configuration.command, "color_red", 9 ) == 0 ) {
+    /* color_red() function is defined in feature.h and implemented in feature.c */
+    color_red(configuration.filenames[0]);  
+}
+
+
+
+
+
   /*
    * TO COMPLETE
    */

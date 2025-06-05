@@ -151,3 +151,102 @@ void max_component(char *source_path, char *argcomponent){
     }
     printf("max_component %c (%d, %d): %d",argcomponent[0],stockcol, stocklig,stock);
 }
+
+void min_component(char *source_path, char *argcomponent){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;    
+    int stockcol = 0, stocklig =0 , stock = 255;
+    pixelRGB *pixel ;
+    int i,j;  /* i colonne et j ligne */
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for (j=0;j<height;j++){
+        for (i=0;i<width; i++){
+            pixel = get_pixel(data, width,height, channel_count, i, j);
+            if(argcomponent[0] == 'R'){
+                if(pixel->R < stock){
+                stockcol = i ;
+                stocklig = j ;
+                stock = pixel->R ;
+                }    
+            }
+            if(argcomponent[0] == 'G'){
+                if(pixel->G < stock){
+                stockcol = i ;
+                stocklig = j ;
+                stock = pixel->G ;
+                }    
+            }
+            if(argcomponent[0] == 'B'){
+                if(pixel->B < stock){
+                stockcol = i ;
+                stocklig = j ;
+                stock = pixel->B ;
+                }    
+            }
+        }
+    }
+    printf("min_component %c (%d, %d): %d",argcomponent[0],stockcol, stocklig,stock);
+}
+
+void stat_report (char *source_path){
+    FILE *fichier = fopen("stat_report.txt", "w");
+   
+    if (fichier == NULL){
+        perror("Erreur lors de l'ouverture du fichier");
+    }
+    max_pixel(source_path);
+    fprintf(fichier,"max_pixel(%d, %d): %d, %d, %d \n",stockcol, stocklig,stockR,stockG,stockB);
+    fprintf(fichier,"\n");
+    stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
+ 
+    min_pixel(source_path);
+    fprintf(fichier,"min_pixel(%d, %d): %d, %d, %d \n",stockcol, stocklig,stockR,stockG,stockB);
+    fprintf(fichier,"\n");
+    stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
+ 
+    max_component(source_path,"R");
+    fprintf(fichier,"max_component %c (%d, %d): %d \n",'R',stockcol, stocklig,stock);
+    fprintf(fichier,"\n");
+    stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
+ 
+    max_component(source_path,"G");
+    fprintf(fichier,"max_component %c (%d, %d): %d \n",'G',stockcol, stocklig,stock);
+    fprintf(fichier,"\n");
+    stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
+ 
+    max_component(source_path,"B");
+    fprintf(fichier,"max_component %c (%d, %d): %d \n",'B',stockcol, stocklig,stock);
+    fprintf(fichier,"\n");
+    stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
+ 
+    min_component(source_path,"R");
+    fprintf(fichier,"min_component %c (%d, %d): %d \n",'R',stockcol, stocklig,stock);
+    fprintf(fichier,"\n");
+    stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
+ 
+    min_component(source_path,"G");
+    fprintf(fichier,"min_component %c (%d, %d): %d \n",'G',stockcol, stocklig,stock);
+    fprintf(fichier,"\n");
+    stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
+ 
+    min_component(source_path,"B");
+    fprintf(fichier,"min_component %c (%d, %d): %d ",'B',stockcol, stocklig,stock);
+ 
+ 
+ 
+    fclose(fichier);
+}
+
+void color_red(char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    int i ;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for(i=0; i<channel_count * width * height;i++){
+       if (i%3 != 0){
+        data[i] = 0;
+       }
+    }
+    write_image_data("./images/input/image_red_out.bmp", data, width, height);
+}
+
