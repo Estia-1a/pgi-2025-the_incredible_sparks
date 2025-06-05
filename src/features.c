@@ -1,9 +1,9 @@
 #include <estia-image.h>
 #include <stdio.h>
-
+#include <math.h>
 #include "features.h"
 #include "utils.h"
-
+ int stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
 /**
  * @brief Here, you have to code features of the project.
  * Do not forget to commit regurlarly your changes.
@@ -46,6 +46,7 @@ void print_pixel( char *filename, int x, int y ){
     int width=0, height =0, channel_count=0;
     pixelRGB *pixel ;
     read_image_data(filename, &data, &width, &height, &channel_count);
+    /*printf("channel count %d",channel_count);*/
     pixel = get_pixel(data, width,height, channel_count, x, y);
     printf("print_pixel(%d, %d): %d, %d, %d",x,y,pixel->R,pixel->G,pixel->B);
 }
@@ -58,4 +59,96 @@ void tenth_pixel (char *source_path){
     read_image_data(source_path, &data, &width, &height, &channel_count);
     printf("tenth_pixel: %d , %d , %d ",data[27],data[28],data[29]); 
 }
+/*Milestone 2: issue #20*/
+void max_pixel(char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    int somme =0;
+    int maxpixel =0;
+    pixelRGB *pixel ;
+    int i,j;  /* i colonne et j ligne */
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for (j=0;j<height;j++){
+        for (i=0;i<width; i++){
+            pixel = get_pixel(data, width,height, channel_count, i, j);
+            somme = pixel->R + pixel->G + pixel->B ;
+           /*printf("la somme est: %d ", somme);*/ 
+            if(somme > maxpixel){
+                stockcol = i ;
+                stocklig = j ;
+                stockR = pixel->R ;
+                stockG = pixel->G ;
+                stockB = pixel->B ;
+                maxpixel=somme;
+            }
+        }
+    }
+    printf("max_pixel(%d, %d): %d, %d, %d",stockcol, stocklig,stockR,stockG,stockB);
+}
 
+/*Milestone 2: issue #19*/
+void min_pixel(char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    int somme =0;
+    int minpixel =800;
+    pixelRGB *pixel ;
+    int i,j;  /* i colonne et j ligne */
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for (j=0;j<height;j++){
+        for (i=0;i<width; i++){
+            pixel = get_pixel(data, width,height, channel_count, i, j);
+            somme = pixel->R + pixel->G + pixel->B ;
+           /*printf("la somme est: %d ", somme);*/ 
+            if(somme < minpixel){
+                stockcol = i ;
+                stocklig = j ;
+                stockR = pixel->R ;
+                stockG = pixel->G ;
+                stockB = pixel->B ;
+                minpixel=somme;
+            }
+        }
+    }
+    printf("min_pixel(%d, %d): %d, %d, %d",stockcol, stocklig,stockR,stockG,stockB);
+}
+
+/*Milestone 2: Issue #18*/
+void max_component(char *source_path, char *argcomponent){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;    
+    int stockmaxc =0 ;
+    pixelRGB *pixel ;
+    int i,j;  /* i colonne et j ligne */
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for (j=0;j<height;j++){
+        for (i=0;i<width; i++){
+            pixel = get_pixel(data, width,height, channel_count, i, j);
+            if(argcomponent[0] == 'R'){
+                if(pixel->R > stockmaxc){
+                stockcol = i ;
+                stocklig = j ;
+                stock = pixel->R ;
+                stockmaxc = pixel->R ;
+                }    
+            } 
+            if(argcomponent[0] == 'G'){
+                if(pixel->G > stockmaxc){
+                stockcol = i ;
+                stocklig = j ;
+                stock = pixel->G ;
+                stockmaxc = pixel->G ;
+                }    
+            } 
+            if(argcomponent[0] == 'B'){
+                if(pixel->B > stockmaxc){
+                stockcol = i ;
+                stocklig = j ;
+                stock = pixel->B ;
+                stockmaxc = pixel->B ;
+                }    
+            } 
+        }
+    }
+    printf("max_component %c (%d, %d): %d",argcomponent[0],stockcol, stocklig,stock);
+}

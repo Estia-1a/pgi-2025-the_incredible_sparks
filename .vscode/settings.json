@@ -12,6 +12,8 @@
     },
     "files.associations": {
         "unistd.h": "c",
-        "estia-image.h": "c"
+        "estia-image.h": "c",
+        "cstdlib": "c",
+        "cmath": "c"
     },
 }
