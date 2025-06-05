@@ -51,7 +51,6 @@ void print_pixel( char *filename, int x, int y ){
     printf("print_pixel(%d, %d): %d, %d, %d",x,y,pixel->R,pixel->G,pixel->B);
 }
 
-
 void tenth_pixel (char *source_path){
     /*int R,G,B;*/ 
     unsigned char *data = NULL;
