@@ -250,3 +250,4 @@ void color_red(char *source_path){
     }
     write_image_data("./images/input/image_red_out.bmp", data, width, height);
 }
+/*TEST LOLA COMMIT*/
