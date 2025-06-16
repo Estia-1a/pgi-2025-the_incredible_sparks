@@ -82,7 +82,11 @@ if ( strncmp( configuration.command, "color_red", 9 ) == 0 ) {
     /* color_red() function is defined in feature.h and implemented in feature.c */
     color_red(configuration.filenames[0]);  
 }
-
+ 
+if ( strncmp( configuration.command, "color_green", 11 ) == 0 ) {
+    /* color_green() function is defined in feature.h and implemented in feature.c */
+    color_green(configuration.filenames[0]);  
+}
 
   /*
    * TO COMPLETE
