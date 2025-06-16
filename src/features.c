@@ -1,6 +1,7 @@
 #include <estia-image.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "features.h"
 #include "utils.h"
  int stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
@@ -31,14 +32,14 @@ void first_pixel (char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
     read_image_data(source_path, &data, &width, &height, &channel_count);
-    printf("first_pixel: %d , %d , %d ",data[0],data[1],data[2]); 
+    printf("first_pixel: %d, %d, %d",data[0],data[1],data[2]); 
 }
 
 void second_line (char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
     read_image_data(source_path, &data, &width, &height, &channel_count);
-   printf("second_line: %d , %d , %d ",data[3*width],data[3*width+1],data[3*width+2]); 
+   printf("second_line: %d , %d , %d",data[3*width],data[3*width+1],data[3*width+2]); 
 }
 
 void print_pixel( char *filename, int x, int y ){
@@ -56,7 +57,7 @@ void tenth_pixel (char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
     read_image_data(source_path, &data, &width, &height, &channel_count);
-    printf("tenth_pixel: %d , %d , %d ",data[27],data[28],data[29]); 
+    printf("tenth_pixel: %d, %d, %d",data[27],data[28],data[29]); 
 }
 /*Milestone 2: issue #20*/
 void max_pixel(char *source_path){
@@ -249,4 +250,3 @@ void color_red(char *source_path){
     }
     write_image_data("./images/input/image_red_out.bmp", data, width, height);
 }
-
