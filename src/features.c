@@ -250,4 +250,39 @@ void color_red(char *source_path){
     }
     write_image_data("./images/input/image_red_out.bmp", data, width, height);
 }
-/*TEST LOLA COMMIT*/
+
+/*Milestone 3 : Issue #14*/
+void color_green(char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    int i ;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for(i=0; i<channel_count * width * height;i++){
+       if (i%3 == 0){
+        data[i] = 0;
+        data[i+2] = 0;
+       }
+       if (i > channel_count * width * height - 2){
+        break;
+       }
+    }
+    write_image_data("./images/input/image_green_out.bmp", data, width, height);
+}
+
+/*Milestone 3 : Issue #13*/
+void color_blue(char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    int i ;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for(i=0; i<channel_count * width * height;i++){
+       if (i%3 == 0){
+        data[i] = 0;
+        data[i+1] = 0;
+       }
+       if (i > channel_count * width * height - 1){
+        break;
+       }
+    }
+    write_image_data("./images/input/image_blue_out.bmp", data, width, height);
+}
