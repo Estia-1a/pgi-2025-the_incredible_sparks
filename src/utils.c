@@ -18,4 +18,3 @@ pixelRGB * get_pixel(unsigned char* data, const unsigned int width, const unsign
 
     return (pixelRGB *) &data[n*(x+y*width)] ; /*x colonne et y ligne*/
 }
-

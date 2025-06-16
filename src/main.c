@@ -84,9 +84,6 @@ if ( strncmp( configuration.command, "color_red", 9 ) == 0 ) {
 }
 
 
-
-
-
   /*
    * TO COMPLETE
    */
