@@ -39,7 +39,7 @@ void second_line (char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
     read_image_data(source_path, &data, &width, &height, &channel_count);
-   printf("second_line: %d , %d , %d",data[3*width],data[3*width+1],data[3*width+2]); 
+   printf("second_line: %d, %d, %d",data[3*width],data[3*width+1],data[3*width+2]); 
 }
 
 void print_pixel( char *filename, int x, int y ){
