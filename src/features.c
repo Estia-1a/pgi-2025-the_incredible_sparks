@@ -248,5 +248,11 @@ void color_red(char *source_path){
         data[i] = 0;
        }
     }
-    write_image_data("./images/input/image_red_out.bmp", data, width, height);
+    write_image_data("./images/input/image_out.bmp", data, width, height);
 }
+
+
+ 
+
+ 
+
