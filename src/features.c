@@ -251,6 +251,7 @@ void color_red(char *source_path){
     write_image_data("./images/input/image_out.bmp", data, width, height);
 }
 
+/*Milestone 3 : Issue #14*/
 void color_green(char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
@@ -268,6 +269,7 @@ void color_green(char *source_path){
     write_image_data("./images/input/image_out.bmp", data, width, height);
 }
 
+/*Milestone 3 : Issue #13*/
 void color_blue(char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
@@ -285,6 +287,7 @@ void color_blue(char *source_path){
     write_image_data("./images/input/image_out.bmp", data, width, height);
 }
 
+/*Milestone 3: Issue #12*/
 void color_gray(char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
