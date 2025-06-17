@@ -285,6 +285,24 @@ void color_blue(char *source_path){
     write_image_data("./images/input/image_out.bmp", data, width, height);
 }
 
+void color_gray(char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    int i,j ; /* i colonne et j ligne */
+    int average =0;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for (j=0;j<height;j++){
+        for (i=0;i<width; i++){
+            average =round((double)(get_pixel(data, width,height, channel_count, i, j)->R + get_pixel(data, width,height, channel_count, i, j)->G + get_pixel(data, width,height, channel_count, i, j)->B) / 3) ;
+            data[channel_count*(i+j*width)]=average;
+            data[channel_count*(i+j*width)+1]=average;
+            data[channel_count*(i+j*width)+2]=average;
+        }
+    }
+ 
+    write_image_data("./images/input/image_out.bmp", data, width, height);
+}
+
  
 
  
