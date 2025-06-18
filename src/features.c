@@ -266,7 +266,7 @@ void color_green(char *source_path){
         break;
        }
     }
-    write_image_data("./images/input/image_out.bmp", data, width, height);
+    write_image_data("image_out.bmp", data, width, height);
 }
 
 /*Milestone 3 : Issue #13*/
