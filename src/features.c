@@ -386,3 +386,22 @@ void rotate_cw(char *source_path){
     write_image_data("image_out.bmp", datadest, width, height);
     free(datadest);
 }
+
+/*Milestone 4 Issue #8*/
+void rotate_acw(char *source_path){
+    unsigned char *datasrc = NULL;
+    /* unsigned char *datadest =NULL ;*/
+    /*unsigned char *data = NULL;*/
+    int width=0, height =0, channel_count=0;
+    int i,j ;  /*i ligne ou j colonne */
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
+    unsigned char *datadest= malloc(height*width*channel_count*sizeof(unsigned char));
+ 
+    for (i=0;i<height;i++){
+        for (j=0;j<width;j++){
+           datadest= set_pixel(datadest, width, height, channel_count, j, width-1-i, datasrc, i, j);
+        }
+    }
+    write_image_data("./images/input/image_rotateacw_out.bmp", datadest, width, height);
+    free(datadest);
+}
