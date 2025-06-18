@@ -303,7 +303,7 @@ void color_gray(char *source_path){
         }
     }
  
-    write_image_data("./images/input/image_out.bmp", data, width, height);
+    write_image_data("image_out.bmp", data, width, height);
 }
 
  
