@@ -369,8 +369,6 @@ void color_desaturate(char *source_path){
 /*Milestone 4 Issue #9*/
 void rotate_cw(char *source_path){
     unsigned char *datasrc = NULL;
-    /* unsigned char *datadest =NULL ;*/
-    /*unsigned char *data = NULL;*/
     int width=0, height =0, channel_count=0;
     int i,j ;  /*i ligne ou j colonne */
     read_image_data(source_path, &datasrc, &width, &height, &channel_count);
@@ -378,9 +376,7 @@ void rotate_cw(char *source_path){
  
     for (i=0;i<height;i++){
         for (j=0;j<width;j++){
-            /*data=*/
            datadest= set_pixel(datadest, width, height, channel_count, width-1-j, i, datasrc, i, j);
-            /*data=set_pixel(datadest, width, height, channel_count, i, j, datasrc, j, width-1-i);*/
         }
     }
     write_image_data("image_out.bmp", datadest, width, height);
@@ -390,8 +386,6 @@ void rotate_cw(char *source_path){
 /*Milestone 4 Issue #8*/
 void rotate_acw(char *source_path){
     unsigned char *datasrc = NULL;
-    /* unsigned char *datadest =NULL ;*/
-    /*unsigned char *data = NULL;*/
     int width=0, height =0, channel_count=0;
     int i,j ;  /*i ligne ou j colonne */
     read_image_data(source_path, &datasrc, &width, &height, &channel_count);
@@ -402,6 +396,7 @@ void rotate_acw(char *source_path){
            datadest= set_pixel(datadest, width, height, channel_count, j, width-1-i, datasrc, i, j);
         }
     }
-    write_image_data("./images/input/image_rotateacw_out.bmp", datadest, width, height);
+    write_image_data("./images/input/image_out.bmp", datadest, width, height);
     free(datadest);
 }
+
