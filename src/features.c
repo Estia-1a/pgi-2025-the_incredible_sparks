@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "features.h"
 #include "utils.h"
+#include <string.h>
  int stockcol = 0, stocklig =0 , stockR =0, stockG = 0, stockB = 0, stock =0 ;
 /**
  * @brief Here, you have to code features of the project.
@@ -47,7 +48,6 @@ void print_pixel( char *filename, int x, int y ){
     int width=0, height =0, channel_count=0;
     pixelRGB *pixel ;
     read_image_data(filename, &data, &width, &height, &channel_count);
-    /*printf("channel count %d",channel_count);*/
     pixel = get_pixel(data, width,height, channel_count, x, y);
     printf("print_pixel(%d, %d): %d, %d, %d",x,y,pixel->R,pixel->G,pixel->B);
 }
@@ -365,5 +365,24 @@ void color_desaturate(char *source_path){
  
     write_image_data("image_out.bmp", data, width, height);
 }
- 
 
+/*Milestone 4 Issue #9*/
+void rotate_cw(char *source_path){
+    unsigned char *datasrc = NULL;
+    /* unsigned char *datadest =NULL ;*/
+    /*unsigned char *data = NULL;*/
+    int width=0, height =0, channel_count=0;
+    int i,j ;  /*i ligne ou j colonne */
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
+    unsigned char *datadest= malloc(height*width*channel_count*sizeof(unsigned char));
+ 
+    for (i=0;i<height;i++){
+        for (j=0;j<width;j++){
+            /*data=*/
+           datadest= set_pixel(datadest, width, height, channel_count, width-1-j, i, datasrc, i, j);
+            /*data=set_pixel(datadest, width, height, channel_count, i, j, datasrc, j, width-1-i);*/
+        }
+    }
+    write_image_data("image_out.bmp", datadest, width, height);
+    free(datadest);
+}
