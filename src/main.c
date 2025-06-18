@@ -123,11 +123,16 @@ if ( strncmp( configuration.command, "rotate_acw", 10) == 0 ) {
     rotate_acw(configuration.filenames[0]);  
 }
 
-if ( strncmp( configuration.command, "mirror_vertical", 17) == 0 ) {
+if ( strncmp( configuration.command, "mirror_vertical", 15) == 0 ) {
     /* mirror_vertical() function is defined in feature.h and implemented in feature.c */
     mirror_vertical(configuration.filenames[0]);  
 }
 
+if ( strncmp( configuration.command, "mirror_horizontal", 17) == 0 ) {
+    /* mirror_horizontal() function is defined in feature.h and implemented in feature.c */
+    mirror_horizontal(configuration.filenames[0]);  
+}
+ 
   /*
    * TO COMPLETE
    */
