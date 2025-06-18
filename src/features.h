@@ -21,6 +21,7 @@ void color_gray_luminance(char *source_path);
 void color_desaturate(char *source_path);
 void rotate_cw(char *source_path);
 void rotate_acw(char *source_path);
+void mirror_vertical(char *source_path);
 
 #endif
 
