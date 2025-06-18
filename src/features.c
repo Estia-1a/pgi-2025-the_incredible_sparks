@@ -401,7 +401,7 @@ void rotate_acw(char *source_path){
 }
 
 /*Milestone 4 Issue #7*/
-void mirror_vertical(char *source_path){
+void mirror_horizontal(char *source_path){
     unsigned char *datasrc = NULL;
     int width=0, height =0, channel_count=0;
     int i,j ;  /*i ligne ou j colonne */
@@ -419,7 +419,7 @@ void mirror_vertical(char *source_path){
 }
 
  /*Milestone 4 Issue #6*/
-void mirror_horizontal(char *source_path){
+void mirror_vertical(char *source_path){
     unsigned char *datasrc = NULL;
     int width=0, height =0, channel_count=0;
     int i,j ;  /*i ligne ou j colonne */
