@@ -39,7 +39,7 @@ void second_line (char *source_path){
     unsigned char *data = NULL;
     int width=0, height =0, channel_count=0;
     read_image_data(source_path, &data, &width, &height, &channel_count);
-   printf("second_line: %d , %d , %d",data[3*width],data[3*width+1],data[3*width+2]); 
+   printf("second_line: %d, %d, %d",data[3*width],data[3*width+1],data[3*width+2]); 
 }
 
 void print_pixel( char *filename, int x, int y ){
@@ -248,7 +248,7 @@ void color_red(char *source_path){
         data[i] = 0;
        }
     }
-    write_image_data("./images/input/image_red_out.bmp", data, width, height);
+    write_image_data("./images/input/image_out.bmp", data, width, height);
 }
 
 /*Milestone 3 : Issue #14*/
@@ -266,7 +266,7 @@ void color_green(char *source_path){
         break;
        }
     }
-    write_image_data("./images/input/image_green_out.bmp", data, width, height);
+    write_image_data("./images/input/image_out.bmp", data, width, height);
 }
 
 /*Milestone 3 : Issue #13*/
@@ -284,7 +284,7 @@ void color_blue(char *source_path){
         break;
        }
     }
-    write_image_data("./images/input/image_blue_out.bmp", data, width, height);
+    write_image_data("./images/input/image_out.bmp", data, width, height);
 }
 
 /*Milestone 3: Issue #12*/
@@ -303,5 +303,10 @@ void color_gray(char *source_path){
         }
     }
  
-    write_image_data("./images/input/image_gray_out.bmp", data, width, height);
+    write_image_data("./images/input/image_out.bmp", data, width, height);
 }
+
+ 
+
+ 
+
