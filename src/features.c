@@ -306,6 +306,21 @@ void color_gray(char *source_path){
     write_image_data("image_out.bmp", data, width, height);
 }
 
+/*Milestone 3: Issue #11*/
+void color_invert(char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height =0, channel_count=0;
+    int i,j ; /* i colonne et j ligne */
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    for (j=0;j<height;j++){
+        for (i=0;i<width; i++){          
+            data[channel_count*(i+j*width)]=255 - get_pixel(data, width,height, channel_count, i, j)->R ;
+            data[channel_count*(i+j*width)+1]=255 - get_pixel(data, width,height, channel_count, i, j)->G ;
+            data[channel_count*(i+j*width)+2]=255 - get_pixel(data, width,height, channel_count, i, j)->B ;
+        }
+    }
+    write_image_data("image_out.bmp", data, width, height);
+}
  
 
  
