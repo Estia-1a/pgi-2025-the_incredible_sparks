@@ -434,4 +434,42 @@ void mirror_vertical(char *source_path){
     write_image_data("image_out.bmp", datadest, width, height);
     free(datadest);
 }
+
+void scale_crop(char *source_path, int center_x, int center_y, int crop_width, int crop_height) {
+    unsigned char *data = NULL;
+    printf("%d %d %d %d",center_x, center_y, crop_width, crop_height);
+    int image_width=0, image_height =0, channel_count=0;
+    read_image_data(source_path, &data, &image_width, &image_height, &channel_count);
+    // Clamp crop size to avoid going outside original image
+    int x_start = center_x - crop_width / 2;
+    int y_start = center_y - crop_height / 2;
  
+    if (x_start < 0) x_start = 0;
+    if (y_start < 0) y_start = 0;
+    if (x_start + crop_width > image_width) x_start = image_width - crop_width;
+    if (y_start + crop_height > image_height) y_start = image_height - crop_height;
+ 
+    // Clamp dimensions in case the crop size is larger than the image
+    if (crop_width > image_width) crop_width = image_width;
+    if (crop_height > image_height) crop_height = image_height;
+ 
+    // Allocate memory for cropped image
+    unsigned char *cropped = malloc(crop_width * crop_height * 3);
+    if (!cropped) {
+        fprintf(stderr, "Erreur: allocation mémoire échouée\n");
+        return;
+    }
+ 
+    // Copy pixels line by line
+    for (int y = 0; y < crop_height; y++) {
+        for (int x = 0; x < crop_width; x++) {
+            int src_idx = ((y_start + y) * image_width + (x_start + x)) * 3;
+            int dst_idx = (y * crop_width + x) * 3;
+            memcpy(&cropped[dst_idx], &data[src_idx], 3);
+        }
+    }
+ 
+    // Save to BMP
+    save_bmp("image_out.bmp", cropped, crop_width, crop_height);
+    free(cropped);
+}
