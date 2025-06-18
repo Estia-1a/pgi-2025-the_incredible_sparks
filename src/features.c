@@ -457,7 +457,7 @@ void mirror_total(char *source_path){
         }
     }
  
-    write_image_data("./images/input/image_symetrie_total_out.bmp", datadestotal, width, height);
+    write_image_data("image_out.bmp", datadestotal, width, height);
     free(datadest);
     free(datadestotal);
 }
