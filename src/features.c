@@ -368,98 +368,147 @@ void color_desaturate(char *source_path){
 
 /*Milestone 4 Issue #9*/
 void rotate_cw(char *source_path){
-    unsigned char *datasrc = NULL;
-    int width=0, height =0, channel_count=0;
-    int i,j ;  /*i ligne ou j colonne */
-    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
-    unsigned char *datadest= malloc(height*width*channel_count*sizeof(unsigned char));
- 
-    for (i=0;i<height;i++){
-        for (j=0;j<width;j++){
-           datadest= set_pixel(datadest, width, height, channel_count, width-1-j, i, datasrc, i, j);
+    unsigned char* datasrc; 
+    unsigned char* datadest; 
+    int width, height, channel_count; 
+    int x, y; 
+    int indexsrc, indexdest, new_x, new_y; 
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count); 
+    int size = width * height * 3; 
+    datadest = malloc(size); 
+    for (y=0;y<height;y++) { 
+        for (x=0;x<width;x++){ 
+            indexsrc=y*width*3+3*x; 
+            new_x=height-1-y; 
+            new_y=x; 
+            indexdest=new_y*height*3+3*new_x; 
+            datadest[indexdest]=datasrc[indexsrc]; 
+            datadest[indexdest+1]=datasrc[indexsrc+1]; 
+            datadest[indexdest+2]=datasrc[indexsrc+2]; 
         }
     }
-    write_image_data("image_out.bmp", datadest, width, height);
+    
+    write_image_data("image_out.bmp", datadest, height, width);
     free(datadest);
 }
 
 /*Milestone 4 Issue #8*/
 void rotate_acw(char *source_path){
-    unsigned char *datasrc = NULL;
-    int width=0, height =0, channel_count=0;
-    int i,j ;  /*i ligne ou j colonne */
-    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
-    unsigned char *datadest= malloc(height*width*channel_count*sizeof(unsigned char));
- 
-    for (i=0;i<height;i++){
-        for (j=0;j<width;j++){
-           datadest= set_pixel(datadest, width, height, channel_count, j, width-1-i, datasrc, i, j);
+    unsigned char* datasrc; 
+    unsigned char* datadest; 
+    int width, height, channel_count; 
+    int x, y; 
+    int indexsrc, indexdest, new_x, new_y; 
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count); 
+    int size = width * height * 3; 
+    datadest = malloc(size); 
+    for (y=0;y<height;y++) { 
+        for (x=0;x<width;x++){ 
+            indexsrc=y*width*3+3*x; 
+            new_x=y;
+            new_y=width-1-x; 
+            indexdest=new_y*height*3+3*new_x; 
+            datadest[indexdest]=datasrc[indexsrc]; 
+            datadest[indexdest+1]=datasrc[indexsrc+1]; 
+            datadest[indexdest+2]=datasrc[indexsrc+2]; 
         }
     }
-    write_image_data("image_out.bmp", datadest, width, height);
+    
+    write_image_data("image_out.bmp", datadest, height, width);
     free(datadest);
 }
 
-/*Milestone 4 Issue #7*/
+//Milestone 4 Issue #7
 void mirror_horizontal(char *source_path){
-    unsigned char *datasrc = NULL;
-    int width=0, height =0, channel_count=0;
-    int i,j ;  /*i ligne ou j colonne */
-    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
-    unsigned char *datadest= malloc(height*width*channel_count*sizeof(unsigned char));
- 
-    for (i=0;i<height;i++){
-        for (j=0;j<width;j++){
-            /*data=*/
-           datadest= set_pixel(datadest, width, height, channel_count, width-1-i, j, datasrc, i, j);
+    unsigned char* datasrc; 
+    unsigned char* datadest; 
+    int width, height, channel_count; 
+    int x, y; 
+    int indexsrc, indexdest, new_x, new_y; 
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count); 
+    int size = width * height * 3; 
+    datadest = malloc(size); 
+    for (y=0;y<height;y++) { 
+        for (x=0;x<width;x++){ 
+            indexsrc=y*width*3+3*x; 
+            new_x = width - 1 - x;
+            new_y=y; 
+            indexdest=new_y*width*3+3*new_x; 
+            datadest[indexdest]=datasrc[indexsrc]; 
+            datadest[indexdest+1]=datasrc[indexsrc+1]; 
+            datadest[indexdest+2]=datasrc[indexsrc+2]; 
         }
     }
+    
     write_image_data("image_out.bmp", datadest, width, height);
     free(datadest);
 }
 
- /*Milestone 4 Issue #6*/
+// Milestone 4 Issue #6
 void mirror_vertical(char *source_path){
-    unsigned char *datasrc = NULL;
-    int width=0, height =0, channel_count=0;
-    int i,j ;  /*i ligne ou j colonne */
-    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
-    unsigned char *datadest= malloc(height*width*channel_count*sizeof(unsigned char));
- 
-    for (i=0;i<height;i++){
-        for (j=0;j<width;j++){
-           datadest= set_pixel(datadest, width, height, channel_count, i, width-1-j, datasrc, i, j);
+    unsigned char* datasrc; 
+    unsigned char* datadest; 
+    int width, height, channel_count; 
+    int x, y; 
+    int indexsrc, indexdest, new_x, new_y; 
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count); 
+    int size = width * height * 3; 
+    datadest = malloc(size); 
+    for (y=0;y<height;y++) { 
+        for (x=0;x<width;x++){ 
+            indexsrc=y*width*3+3*x; 
+            new_x =x;
+            new_y=height - 1 - y; 
+            indexdest=new_y*width*3+3*new_x; 
+            datadest[indexdest]=datasrc[indexsrc]; 
+            datadest[indexdest+1]=datasrc[indexsrc+1]; 
+            datadest[indexdest+2]=datasrc[indexsrc+2]; 
         }
     }
+    
     write_image_data("image_out.bmp", datadest, width, height);
     free(datadest);
 }
 
-/*Milestone 4 Issue #5*/
 void mirror_total(char *source_path){
-    unsigned char *datasrc = NULL;
-    int width=0, height =0, channel_count=0;
-    int i,j ;  /*i ligne ou j colonne */
-    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
-    unsigned char *datadest= malloc(height*width*channel_count*sizeof(unsigned char));
-    unsigned char *datadestotal= malloc(height*width*channel_count*sizeof(unsigned char));
-    /* mirror_vertical */
-    for (i=0;i<height;i++){
-        for (j=0;j<width;j++){
-           datadest= set_pixel(datadest, width, height, channel_count, i, width-1-j, datasrc, i, j);
+    unsigned char* datasrc; 
+    unsigned char* datadest; 
+    int width, height, channel_count; 
+    int x, y; 
+    int indexsrc, indexdest, new_x, new_y; 
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count); 
+    int size = width * height * 3; 
+    datadest = malloc(size); 
+    unsigned char *datatotal= malloc(height*width*channel_count*sizeof(unsigned char));
+   // mirror_vertical
+    for (y=0;y<height;y++) { 
+        for (x=0;x<width;x++){ 
+            indexsrc=y*width*3+3*x; 
+            new_x =x;
+            new_y=height - 1 - y; 
+            indexdest=new_y*width*3+3*new_x; 
+            datadest[indexdest]=datasrc[indexsrc]; 
+            datadest[indexdest+1]=datasrc[indexsrc+1]; 
+            datadest[indexdest+2]=datasrc[indexsrc+2]; 
         }
     }
-   
-    /* mirror_horizontal */
-    for (i=0;i<height;i++){
-        for (j=0;j<width;j++){
-           datadestotal= set_pixel(datadestotal, width, height, channel_count, width-1-i, j, datadest, i, j);
+
+    //mirror_horizontal
+     for (y=0;y<height;y++) { 
+        for (x=0;x<width;x++){ 
+            indexsrc=y*width*3+3*x; 
+            new_x = width - 1 - x;
+            new_y=y; 
+            indexdest=new_y*width*3+3*new_x; 
+            datatotal[indexdest]=datadest[indexsrc]; 
+            datatotal[indexdest+1]=datadest[indexsrc+1]; 
+            datatotal[indexdest+2]=datadest[indexsrc+2]; 
         }
     }
- 
-    write_image_data("image_out.bmp", datadestotal, width, height);
+
+    write_image_data("image_out.bmp", datatotal, width, height);
     free(datadest);
-    free(datadestotal);
+    free(datatotal);
 }
 
 void scale_crop(char *source_path, int center_x, int center_y, int crop_width, int crop_height) {
