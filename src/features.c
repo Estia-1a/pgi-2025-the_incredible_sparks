@@ -550,3 +550,54 @@ void scale_crop(char *source_path, int center_x, int center_y, int crop_width, i
     free(cropped);
 }
 
+void scale_nearest(char*source_path, float scale) {
+    int width, height, channel_count;
+    unsigned char*datasrc;
+    unsigned char*datadest;
+    
+    read_image_data(source_path, &datasrc, &width, &height, &channel_count);
+ 
+    int widthdest = (int)(width * scale);
+    int heightdest = (int)(height * scale);
+ 
+    if (scale > 0) {
+        if (widthdest == 0) widthdest = 1;
+        if (heightdest == 0) heightdest = 1;
+    }
+ 
+    if (widthdest <=0 || heightdest <=0) {
+        printf("Erreur : dimension invalides (scale = %.2f)\n", scale);
+        free(datasrc);
+        return;
+    }
+ 
+    datadest = (unsigned char*)malloc(widthdest * heightdest * channel_count * sizeof(unsigned char));  
+ 
+ 
+        int y,x,c;
+        for (y = 0; y < heightdest; y ++) {
+            for (x = 0; x < widthdest; x ++) {
+ 
+                int src_x = (int)((float)x / scale + 0.5f);
+                int src_y = (int)((float)y / scale + 0.5f);
+               
+                if (src_x < 0) src_x = 0;
+                if (src_y < 0) src_y = 0;
+                if (src_x >= width) src_x = width -1;
+                if (src_y >= height) src_y = height -1;
+ 
+ 
+                int target_pixel_index = (y * widthdest + x)*channel_count;
+                int source_pixel_index = (src_y * width + src_x)*channel_count;
+ 
+                for (c=0; c <channel_count; c++) {
+                    datadest[target_pixel_index + c]= datasrc[source_pixel_index + c];
+                }
+               
+            }
+        }
+        write_image_data("image_out.bmp", datadest, widthdest, heightdest);
+ 
+        free(datasrc);
+        free(datadest);
+}
